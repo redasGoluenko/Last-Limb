@@ -788,7 +788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hand: 0
   _trackingSpace: {fileID: 457765709}
-  _debugMode: 1
+  _debugMode: 0
   _climbableTag: Climbable
   _climbStrength: 0.2
 --- !u!54 &638820481
@@ -1320,7 +1320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hand: 1
   _trackingSpace: {fileID: 457765709}
-  _debugMode: 1
+  _debugMode: 0
   _climbableTag: Climbable
   _climbStrength: 0.2
 --- !u!54 &1434743902
