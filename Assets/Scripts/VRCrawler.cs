@@ -1,126 +1,77 @@
 using UnityEngine;
-using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
+[RequireComponent(typeof(XRDirectInteractor))]
 public class ClimbingHand : MonoBehaviour
 {
-    public enum HandType { Left, Right }
-    public HandType _hand = HandType.Left;
-    public Transform _trackingSpace;
-    public bool _debugMode = true;
-
-    [Header("Grab Settings")]
+    public Transform _trackingSpace; 
     public string _climbableTag = "Climbable";
     public float _climbStrength = 0.2f;
-
-    private Vector3 _lastPos;
+    public bool IsGrabbing => _isGrabbing;
+    private XRDirectInteractor _interactor;
+    private Rigidbody _playerRigidbody;
     private bool _isGrabbing = false;
-    private bool _canGrab = false;
-    private Vector3 _grabPosition;
     private Collider _currentClimbable;
+    private Vector3 _lastPos;
+    private Vector3 _grabPosition;
 
-    private InputDevice _controller;
-
-    void Start()
+    void Awake()
     {
-        _lastPos = transform.position;
-        InitializeController();
+        _interactor = GetComponent<XRDirectInteractor>();
+        _interactor.selectEntered.AddListener(OnGrabStart);
+        _interactor.selectExited.AddListener(OnGrabEnd);
+
+        _playerRigidbody = _trackingSpace.GetComponent<Rigidbody>();
+        if (_playerRigidbody == null)
+        {
+            Debug.LogWarning($"[{name}] No Rigidbody found on trackingSpace!");
+        }
+        else
+        {
+            _playerRigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+            _playerRigidbody.freezeRotation = true;
+        }
     }
 
-    void InitializeController()
+    void OnDestroy()
     {
-        var handCharacteristic = _hand == HandType.Left ? InputDeviceCharacteristics.Left : InputDeviceCharacteristics.Right;
-        var devices = new System.Collections.Generic.List<InputDevice>();
-        InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Controller | handCharacteristic, devices);
-
-        if (devices.Count > 0)
+        if (_interactor != null)
         {
-            _controller = devices[0];
-            Debug.Log($"{_hand} controller found: {_controller.name}");
+            _interactor.selectEntered.RemoveListener(OnGrabStart);
+            _interactor.selectExited.RemoveListener(OnGrabEnd);
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        Vector3 move = Vector3.zero;
-
-        bool grabInput = false;
-
-        if (_controller.isValid)
-        {
-            if (_controller.TryGetFeatureValue(CommonUsages.triggerButton, out bool triggerValue))
-            {
-                grabInput = triggerValue;
-            }
-        }
-
-        if (_debugMode)
-        {
-            grabInput = (_hand == HandType.Left) ? Input.GetKey(KeyCode.Q) : Input.GetKey(KeyCode.E);
-
-            if (_hand == HandType.Left)
-            {
-                if (Input.GetKey(KeyCode.W)) move += transform.forward * 0.02f;
-                if (Input.GetKey(KeyCode.S)) move -= transform.forward * 0.02f;
-                if (Input.GetKey(KeyCode.A)) move -= transform.right * 0.02f;
-                if (Input.GetKey(KeyCode.D)) move += transform.right * 0.02f;
-                if (Input.GetKey(KeyCode.G)) move += transform.up * 0.02f; // up
-                if (Input.GetKey(KeyCode.H)) move -= transform.up * 0.02f; // down
-            }
-            else
-            {
-                if (Input.GetKey(KeyCode.UpArrow)) move += transform.forward * 0.02f;
-                if (Input.GetKey(KeyCode.DownArrow)) move -= transform.forward * 0.02f;
-                if (Input.GetKey(KeyCode.LeftArrow)) move -= transform.right * 0.02f;
-                if (Input.GetKey(KeyCode.RightArrow)) move += transform.right * 0.02f;
-                if (Input.GetKey(KeyCode.Period)) move += transform.up * 0.02f; // up
-                if (Input.GetKey(KeyCode.Comma)) move -= transform.up * 0.02f; // down
-            }
-
-            transform.position += move;
-        }
-
-        // Handle grabbing
-        if (grabInput && _canGrab && !_isGrabbing)
-        {
-            _isGrabbing = true;
-            _grabPosition = transform.position;
-        }
-        else if (!grabInput)
-        {
-            _isGrabbing = false;
-        }
-
-        if (_isGrabbing)
+        if (_isGrabbing && _playerRigidbody != null)
         {
             Vector3 delta = transform.position - _lastPos;
-            _trackingSpace.position -= delta * _climbStrength;
+            Vector3 targetPos = _playerRigidbody.position - delta * _climbStrength;
+             _playerRigidbody.MovePosition(Vector3.Lerp(_playerRigidbody.position, targetPos, 0.8f));
 
             transform.position = _grabPosition;
         }
-
         _lastPos = transform.position;
+    }
 
-        // Re-initialize controller if disconnected
-        if (!_controller.isValid)
+    private void OnGrabStart(SelectEnterEventArgs args)
+    {
+        GameObject grabbedObject = args.interactableObject.transform.gameObject;
+
+        if (grabbedObject.CompareTag(_climbableTag))
         {
-            InitializeController();
+            _isGrabbing = true;
+            _grabPosition = transform.position;
+            _currentClimbable = grabbedObject.GetComponent<Collider>();
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnGrabEnd(SelectExitEventArgs args)
     {
-        if (other.CompareTag(_climbableTag))
+        if (_isGrabbing)
         {
-            _canGrab = true;
-            _currentClimbable = other;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other == _currentClimbable)
-        {
-            _canGrab = false;
+            _isGrabbing = false;
             _currentClimbable = null;
         }
     }
