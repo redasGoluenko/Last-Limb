@@ -2,26 +2,24 @@ using UnityEngine;
 
 public class ClimbingState : MonoBehaviour
 {
-    public ClimbingHand leftHand;
-    public ClimbingHand rightHand;
-    public Rigidbody playerRigidbody;
+    public ClimbingHand _leftHand;
+    public ClimbingHand _rightHand;
+    public Rigidbody _playerRigidbody;
 
     public bool IsClimbing { get; private set; }
 
     void Update()
     {
-        if (leftHand == null || rightHand == null || playerRigidbody == null)
+        if (_leftHand == null || _rightHand == null || _playerRigidbody == null)
         {
             IsClimbing = false;
-            if (playerRigidbody != null)
-                playerRigidbody.useGravity = true;
+            if (_playerRigidbody != null)
+                _playerRigidbody.useGravity = true;
             return;
         }
 
-        // Player is climbing if at least one hand is grabbing
-        IsClimbing = leftHand.IsGrabbing || rightHand.IsGrabbing;
+        IsClimbing = _leftHand.IsGrabbing || _rightHand.IsGrabbing;
 
-        // Only enable gravity when neither hand is grabbing
-        playerRigidbody.useGravity = !IsClimbing;
+        _playerRigidbody.useGravity = !IsClimbing;
     }
 }
