@@ -4,40 +4,46 @@ using UnityEngine.XR;
 public class SpinningCylinder : MonoBehaviour
 {
     public Transform _cylinder;
-    public float _spinSpeed = 60f;    // degrees per second
-    public float _spinAmount = 60f;   // degrees per spin
-    public XRNode controllerNode = XRNode.RightHand; // which hand triggers spin
+    public float _spinSpeed = 240f;   // degrees per second
+    public float _spinAmount = 60f;  // degrees per spin
 
     private bool _spinning = false;
     private Quaternion _targetRotation;
-    private InputDevice _controller;
+    private InputDevice _leftController;
+    private InputDevice _rightController;
     private bool _buttonWasPressed = false;
 
     void Start()
     {
-        InitializeController();
+        InitializeControllers();
     }
 
-    void InitializeController()
+    void InitializeControllers()
     {
-        _controller = InputDevices.GetDeviceAtXRNode(controllerNode);
-        if (!_controller.isValid)
-        {
-            Debug.LogWarning($"No controller found for {controllerNode}");
-        }
+        _leftController = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+        _rightController = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+
+        if (!_leftController.isValid)
+            Debug.LogWarning("No left controller found!");
+        if (!_rightController.isValid)
+            Debug.LogWarning("No right controller found!");
     }
 
     void Update()
     {
-        if (!_controller.isValid)
-            InitializeController();
+        if (!_leftController.isValid || !_rightController.isValid)
+            InitializeControllers();
 
-        bool buttonPressed = false;
+        bool leftPressed = false;
+        bool rightPressed = false;
 
-        if (_controller.isValid)
-        {
-            _controller.TryGetFeatureValue(CommonUsages.gripButton, out buttonPressed);
-        }
+        if (_leftController.isValid)
+            _leftController.TryGetFeatureValue(CommonUsages.triggerButton, out leftPressed);
+
+        if (_rightController.isValid)
+            _rightController.TryGetFeatureValue(CommonUsages.triggerButton, out rightPressed);
+
+        bool buttonPressed = leftPressed || rightPressed;
 
         if (buttonPressed && !_buttonWasPressed)
         {

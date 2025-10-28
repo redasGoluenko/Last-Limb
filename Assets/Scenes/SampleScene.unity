@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 40919622}
   - component: {fileID: 40919621}
   - component: {fileID: 40919620}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ISDK_HandGrabInteraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1519,7 +1519,7 @@ GameObject:
   - component: {fileID: 1307012615}
   - component: {fileID: 1307012614}
   - component: {fileID: 1307012616}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: XR Origin (XR Rig)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1649,7 +1649,7 @@ GameObject:
   - component: {fileID: 1669233493}
   - component: {fileID: 1669233495}
   - component: {fileID: 1669233494}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AttachPoint_Sides
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2128,7 +2128,7 @@ GameObject:
   - component: {fileID: 1828601336}
   - component: {fileID: 1828601347}
   - component: {fileID: 1828601346}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2507,13 +2507,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 547421692828600802, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265185966790690066, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4808585876506129649, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.9909
       objectReference: {fileID: 0}
     - target: {fileID: 4808585876506129649, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6499
+      value: 0.204
       objectReference: {fileID: 0}
     - target: {fileID: 4808585876506129649, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2550,6 +2558,10 @@ PrefabInstance:
     - target: {fileID: 8018895278710369184, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
       propertyPath: m_Name
       value: Revolver
+      objectReference: {fileID: 0}
+    - target: {fileID: 8018895278710369184, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
