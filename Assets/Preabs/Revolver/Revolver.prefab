@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 973605445917909252}
-  - component: {fileID: 7107341647016109949}
   m_Layer: 0
   m_Name: HandllerCollider
   m_TagString: Untagged
@@ -26,33 +25,43 @@ Transform:
   m_GameObject: {fileID: 547421692828600802}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0746, z: -0.0206}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4808585876506129649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7107341647016109949
-BoxCollider:
+--- !u!1 &4790799947083093068
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547421692828600802}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.026240263, y: 0.0475291, z: 0.024841964}
-  m_Center: {x: 0, y: -0.04355544, z: -0.01895526}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1028778020186498139}
+  m_Layer: 0
+  m_Name: ShootingPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1028778020186498139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4790799947083093068}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0337, z: 0.1239}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4808585876506129649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8018895278710369184
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,6 +74,7 @@ GameObject:
   - component: {fileID: 1786982274031473147}
   - component: {fileID: 1265185966790690066}
   - component: {fileID: 33895446127476039}
+  - component: {fileID: 2867626654588995064}
   m_Layer: 0
   m_Name: Revolver
   m_TagString: Untagged
@@ -87,6 +97,7 @@ Transform:
   m_Children:
   - {fileID: 5379990699958767038}
   - {fileID: 973605445917909252}
+  - {fileID: 1028778020186498139}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1786982274031473147
@@ -289,6 +300,21 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &2867626654588995064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8018895278710369184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca3e64a6c25ef44d85c66701378d23d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shootingPosition: {fileID: 1028778020186498139}
+  _bulletGameObject: {fileID: 5072549764343671299, guid: fa8829a57e609c44ca0a5b1f2f62ae00, type: 3}
+  _shootingSpeed: 25
 --- !u!1001 &5558330848002959957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -379,4 +405,3 @@ MonoBehaviour:
   _cylinder: {fileID: 1232189691341107300}
   _spinSpeed: 60
   _spinAmount: 60
-  controllerNode: 5
