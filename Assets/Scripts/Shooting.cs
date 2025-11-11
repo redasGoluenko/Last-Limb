@@ -8,6 +8,7 @@ public class Shooting : MonoBehaviour
     public Transform _shootingPosition;
     public GameObject _bulletGameObject;
     public float _shootingSpeed = 25f;
+    public AudioSource _audioSource;
     private InputDevice _leftController;
     private InputDevice _rightController;
     private bool _buttonWasPressed = false;
@@ -52,6 +53,7 @@ public class Shooting : MonoBehaviour
 
     private void Shoot()
     {
+        _audioSource.Play();
         if (_bulletGameObject == null || _shootingPosition == null)
         {
             Debug.LogWarning("Missing bullet prefab or shooting position.");
