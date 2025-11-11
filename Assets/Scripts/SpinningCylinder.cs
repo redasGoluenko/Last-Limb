@@ -1,5 +1,7 @@
+using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class SpinningCylinder : MonoBehaviour
 {
@@ -12,10 +14,14 @@ public class SpinningCylinder : MonoBehaviour
     private InputDevice _leftController;
     private InputDevice _rightController;
     private bool _buttonWasPressed = false;
+    private bool _isHeld = false;
+    public XRGrabInteractable _grabInteractable;
 
     void Start()
     {
         InitializeControllers();
+        _grabInteractable.selectEntered.AddListener(OnGrab);
+        _grabInteractable.selectExited.AddListener(OnRelease);
     }
 
     void InitializeControllers()
@@ -45,7 +51,7 @@ public class SpinningCylinder : MonoBehaviour
 
         bool buttonPressed = leftPressed || rightPressed;
 
-        if (buttonPressed && !_buttonWasPressed)
+        if (_isHeld && buttonPressed && !_buttonWasPressed)
         {
             StartSpin();
         }
@@ -65,6 +71,16 @@ public class SpinningCylinder : MonoBehaviour
                 _cylinder.localRotation = _targetRotation;
             }
         }
+    }
+
+    private void OnGrab(SelectEnterEventArgs args)
+    {
+        _isHeld = true;
+    }
+
+    private void OnRelease(SelectExitEventArgs args)
+    {
+        _isHeld = false;
     }
 
     public void StartSpin()
