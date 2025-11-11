@@ -12,8 +12,20 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Show.unity
+    path: Assets/Scenes/Game Scenes/Bedroom.unity
     guid: 98dfb0e1301783944b002b112efb7eee
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/ClassRoom.unity
+    guid: 02750808b9f3b124f9ba44080143cb90
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Day Room.unity
+    guid: 3371f305c8eb7b04893f88e6aae713b9
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Dining Room.unity
+    guid: 88b93bd9c96efe94db8c105689242b2f
+  - enabled: 1
+    path: Assets/Scenes/Game Scenes/Office.unity
+    guid: 1f230029d5c0a574fb9ed673b2014bd3
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 909a01eb5998fef4dbaf2e3d724074ba, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 453de5b46dfaa464b876fd415f6a2477, type: 2}
