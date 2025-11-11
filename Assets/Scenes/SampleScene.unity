@@ -3466,6 +3466,18 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2541421980515245996, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2541421980515245996, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2541421980515245996, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2867626654588995064, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
       propertyPath: _shootingSpeed
       value: 15
@@ -3517,6 +3529,10 @@ PrefabInstance:
     - target: {fileID: 4808585876506129649, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030031220219384401, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1827
       objectReference: {fileID: 0}
     - target: {fileID: 7600962521567253769, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
       propertyPath: m_Pitch
