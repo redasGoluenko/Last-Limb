@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Shooting : MonoBehaviour
 {
@@ -12,9 +13,14 @@ public class Shooting : MonoBehaviour
     private InputDevice _leftController;
     private InputDevice _rightController;
     private bool _buttonWasPressed = false;
+    private bool _isHeld = false;
+    private XRGrabInteractable grabInteractable;
     void Start()
     {
         InitializeControllers();
+        grabInteractable = GetComponent<XRGrabInteractable>();
+        grabInteractable.selectEntered.AddListener(OnGrab);
+        grabInteractable.selectExited.AddListener(OnRelease);
     }
 
     void InitializeControllers()
@@ -44,7 +50,7 @@ public class Shooting : MonoBehaviour
 
         bool buttonPressed = leftPressed || rightPressed;
 
-        if (buttonPressed && !_buttonWasPressed)
+        if (_isHeld && buttonPressed && !_buttonWasPressed)
         {
             Shoot();
         }
@@ -70,5 +76,15 @@ public class Shooting : MonoBehaviour
         }
 
         Destroy(bullet, 5f);
+    }
+
+    private void OnGrab(SelectEnterEventArgs args)
+    {
+        _isHeld = true;
+    }
+
+    private void OnRelease(SelectExitEventArgs args)
+    {
+        _isHeld = false;
     }
 }
