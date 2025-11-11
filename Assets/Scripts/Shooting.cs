@@ -15,6 +15,7 @@ public class Shooting : MonoBehaviour
     private bool _buttonWasPressed = false;
     private bool _isHeld = false;
     private XRGrabInteractable grabInteractable;
+    public ParticleSystem _flash;
     void Start()
     {
         InitializeControllers();
@@ -67,7 +68,7 @@ public class Shooting : MonoBehaviour
         }
 
         GameObject bullet = Instantiate(_bulletGameObject, _shootingPosition.position, _shootingPosition.rotation);
-
+        _flash.Play();
         // Give bullet forward velocity along local Z-axis
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)

@@ -3426,6 +3426,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
+--- !u!198 &2081439153 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2541421980515245996, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
+  m_PrefabInstance: {fileID: 8548639096763193518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8548639096763193518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3467,6 +3472,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2541421980515245996, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2541421980515245996, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2541421980515245996, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
       propertyPath: ShapeModule.radius.value
       value: 0.05
       objectReference: {fileID: 0}
@@ -3478,6 +3491,10 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 2867626654588995064, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
+      propertyPath: _flash
+      value: 
+      objectReference: {fileID: 2081439153}
     - target: {fileID: 2867626654588995064, guid: ab7578cadf97bc149b9010c0fedb8c0b, type: 3}
       propertyPath: _shootingSpeed
       value: 15
