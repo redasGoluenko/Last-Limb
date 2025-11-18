@@ -5208,6 +5208,7 @@ MonoBehaviour:
   _bulletGameObject: {fileID: 5072549764343671299, guid: fa8829a57e609c44ca0a5b1f2f62ae00, type: 3}
   _shootingSpeed: 25
   _audioSource: {fileID: 7600962521567253769}
+  _flash: {fileID: 0}
 --- !u!82 &7600962521567253769
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5393,6 +5394,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cylinder: {fileID: 1232189691341107300}
-  _spinSpeed: 60
+  _spinSpeed: 240
   _spinAmount: 60
-  _grabInteractable: {fileID: 0}
+  _grabInteractable: {fileID: 33895446127476039}
