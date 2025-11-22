@@ -6,13 +6,16 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     [Header("Refs")]
-    [SerializeField] Transform player;
+    [SerializeField] GameObject player;
 
     [Header("Tuning")]
     [SerializeField] float repathSeconds = 0.1f;   
     [SerializeField] float attackRange = 1.6f;    
+    [SerializeField] float attackDamage = 25f;
     [SerializeField] string attackStateName = "Attack"; 
     [SerializeField] float turnRateDegPerSec = 360f;
+    private HealthManager targetHealthManager; // player
+    private HealthManager enemyHealthManager;
 
     // Animator parameters
     static readonly int SpeedHash = Animator.StringToHash("Speed");
@@ -25,6 +28,8 @@ public class EnemyController : MonoBehaviour
 
     void Awake()
     {
+        targetHealthManager = player.GetComponent<HealthManager>();
+        enemyHealthManager = GetComponent < HealthManager>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
@@ -37,7 +42,7 @@ public class EnemyController : MonoBehaviour
     {
         if (!player) return;
 
-        float dist = Vector3.Distance(transform.position, player.position);
+        float dist = Vector3.Distance(transform.position, player.transform.position);
         float speed = agent.velocity.magnitude;
 
         anim.SetFloat(SpeedHash, speed);
@@ -49,6 +54,7 @@ public class EnemyController : MonoBehaviour
         {
             anim.ResetTrigger(AttackHash);
             anim.SetTrigger(AttackHash);
+            targetHealthManager.GetDamaged(attackDamage);
         }
 
         agent.isStopped = isAttacking;
@@ -56,7 +62,7 @@ public class EnemyController : MonoBehaviour
         repathTimer += Time.deltaTime;
         if (!isAttacking && repathTimer >= repathSeconds)
         {
-            agent.SetDestination(player.position);
+            agent.SetDestination(player.transform.position);
             repathTimer = 0f;
         }
 
