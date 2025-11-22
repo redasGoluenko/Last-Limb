@@ -12,6 +12,8 @@ public class Shooting : MonoBehaviour
     public AudioSource _audioSource;
     private InputDevice _leftController;
     private InputDevice _rightController;
+    public int _bulletCount = 0;
+    public int _maxBullets = 6;
     private bool _buttonWasPressed = false;
     private bool _isHeld = false;
     private XRGrabInteractable grabInteractable;
@@ -51,7 +53,7 @@ public class Shooting : MonoBehaviour
 
         bool buttonPressed = leftPressed || rightPressed;
 
-        if (_isHeld && buttonPressed && !_buttonWasPressed)
+        if (_bulletCount > 0 && _isHeld && buttonPressed && !_buttonWasPressed)
         {
             Shoot();
         }
@@ -63,7 +65,6 @@ public class Shooting : MonoBehaviour
         _audioSource.Play();
         if (_bulletGameObject == null || _shootingPosition == null)
         {
-            Debug.LogWarning("Missing bullet prefab or shooting position.");
             return;
         }
 
@@ -75,10 +76,17 @@ public class Shooting : MonoBehaviour
         {
             rb.velocity = _shootingPosition.forward * _shootingSpeed;
         }
-
+        _bulletCount--;
         Destroy(bullet, 5f);
     }
 
+    public void AddBullet()
+    {
+        if (_bulletCount < _maxBullets)
+        {
+            _bulletCount++;
+        }
+    }
     private void OnGrab(SelectEnterEventArgs args)
     {
         _isHeld = true;
