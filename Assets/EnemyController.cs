@@ -14,8 +14,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float attackDamage = 25f;
     [SerializeField] string attackStateName = "Attack"; 
     [SerializeField] float turnRateDegPerSec = 360f;
-    private HealthManager targetHealthManager; // player
-    private HealthManager enemyHealthManager;
+    private HealthManager _targetHealthManager; // player
+    private HealthManager _enemyHealthManager;
 
     // Animator parameters
     static readonly int SpeedHash = Animator.StringToHash("Speed");
@@ -28,8 +28,8 @@ public class EnemyController : MonoBehaviour
 
     void Awake()
     {
-        targetHealthManager = player.GetComponent<HealthManager>();
-        enemyHealthManager = GetComponent < HealthManager>();
+        _targetHealthManager = player.GetComponent<HealthManager>();
+        _enemyHealthManager = GetComponent < HealthManager>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour
         {
             anim.ResetTrigger(AttackHash);
             anim.SetTrigger(AttackHash);
-            targetHealthManager.GetDamaged(attackDamage);
+            _targetHealthManager.GetDamaged(attackDamage);
         }
 
         agent.isStopped = isAttacking;
@@ -71,6 +71,20 @@ public class EnemyController : MonoBehaviour
         {
             Quaternion look = Quaternion.LookRotation(desired.normalized, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, look, turnRateDegPerSec * Time.deltaTime);
+        }
+        if(_enemyHealthManager.isDead()){
+            Destroy(this);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        BulletItem bullet = other.GetComponent<BulletItem>();
+
+        if (bullet != null && !bullet._reloadable)
+        {
+            _enemyHealthManager.GetDamaged(bullet._damage);
+            Destroy(bullet);
         }
     }
 }
