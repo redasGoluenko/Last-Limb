@@ -5208,6 +5208,8 @@ MonoBehaviour:
   _bulletGameObject: {fileID: 7325583380587023384, guid: 00f58b921ffc0ef4b8df2318d151f8b9, type: 3}
   _shootingSpeed: 25
   _audioSource: {fileID: 7600962521567253769}
+  _bulletCount: 0
+  _maxBullets: 6
   _flash: {fileID: 2541421980515245996}
 --- !u!82 &7600962521567253769
 AudioSource:
@@ -5436,6 +5438,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040f11bf8b792f14d91803be305cec88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletObject: {fileID: 3033775479424814218, guid: ab8934f834de6a14eb0720079b336cac, type: 3}
-  _reloadZone: {fileID: 0}
-  _bulletCapacity: 6
+  _gun: {fileID: 2867626654588995064}
+  _bulletType: RevolverBullet

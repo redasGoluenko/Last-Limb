@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         _targetHealthManager = player.GetComponent<HealthManager>();
-        _enemyHealthManager = GetComponent < HealthManager>();
+        _enemyHealthManager = GetComponent<HealthManager>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
@@ -73,18 +73,26 @@ public class EnemyController : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, look, turnRateDegPerSec * Time.deltaTime);
         }
         if(_enemyHealthManager.isDead()){
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
+        if (!other.CompareTag("Bullet")) return;
+
         BulletItem bullet = other.GetComponent<BulletItem>();
+
+        if (bullet is null)
+        {
+            Debug.Log(other.name + " collided with enemy");
+        }
 
         if (bullet != null && !bullet._reloadable)
         {
+            Debug.Log(other.name + " collided with enemy");
             _enemyHealthManager.GetDamaged(bullet._damage);
-            Destroy(bullet);
+            Destroy(bullet.gameObject);
         }
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8995133116527645081}
   m_Layer: 7
   m_Name: Flying Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletType: RevolverType
+  _reloadable: 0
+  _damage: 20
 --- !u!1001 &6641658395010527405
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,9 +9,10 @@ public class Reloading : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        BulletItem bullet = other.GetComponent<BulletItem>();
+        BulletItem bullet = other.GetComponentInParent<BulletItem>();
         if (bullet != null && CanAddBullet(_gun._bulletCount, _gun._maxBullets) && bullet._bulletType.Equals(_bulletType))
         {
+            Debug.Log("Bullet is inside");
             _gun.AddBullet();
             Destroy(bullet.gameObject);
         }
