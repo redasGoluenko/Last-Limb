@@ -4,7 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 [RequireComponent(typeof(XRDirectInteractor))]
 public class ClimbingHand : MonoBehaviour
 {
-    public Transform _trackingSpace; 
+    public Transform _trackingSpace;
     public string _climbableTag = "Climbable";
     public float _climbStrength = 0.2f;
     public bool IsGrabbing => _isGrabbing;
@@ -46,10 +46,24 @@ public class ClimbingHand : MonoBehaviour
     {
         if (_isGrabbing && _playerRigidbody != null)
         {
+            float _floorBuffer = 0.2f;
             Vector3 delta = transform.position - _lastPos;
             Vector3 targetPos = _playerRigidbody.position - delta * _climbStrength;
-             _playerRigidbody.MovePosition(Vector3.Lerp(_playerRigidbody.position, targetPos, 0.8f));
-
+            RaycastHit hit;
+            float rayDistance = 0.5f;
+            if (Physics.Raycast(_trackingSpace.position, Vector3.down, out hit, rayDistance))
+            {
+                float floorY = hit.point.y + _floorBuffer;
+                if (targetPos.y < floorY - 1f)
+                {
+                    targetPos.y = floorY; 
+                }
+                else
+                {
+                    targetPos.y = Mathf.Max(targetPos.y, floorY);
+                }
+            }
+            _playerRigidbody.MovePosition(Vector3.Lerp(_playerRigidbody.position, targetPos, 0.8f));
             transform.position = _grabPosition;
         }
         _lastPos = transform.position;
@@ -62,6 +76,7 @@ public class ClimbingHand : MonoBehaviour
         if (grabbedObject.CompareTag(_climbableTag))
         {
             _isGrabbing = true;
+            _playerRigidbody.isKinematic = true;
             _grabPosition = transform.position;
             _currentClimbable = grabbedObject.GetComponent<Collider>();
         }
@@ -72,6 +87,7 @@ public class ClimbingHand : MonoBehaviour
         if (_isGrabbing)
         {
             _isGrabbing = false;
+            _playerRigidbody.isKinematic = false;
             _currentClimbable = null;
         }
     }
