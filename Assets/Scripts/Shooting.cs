@@ -6,9 +6,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Shooting : MonoBehaviour
 {
+    public GameObject _bulletHolePrefab;
     public Transform _shootingPosition;
     public GameObject _bulletGameObject;
-    public float _shootingSpeed = 25f;
+    public float _shootingSpeed = 10f;
     public AudioSource _audioSource;
     private InputDevice _leftController;
     private InputDevice _rightController;
@@ -75,8 +76,11 @@ public class Shooting : MonoBehaviour
         if (rb != null)
         {
             rb.velocity = _shootingPosition.forward * _shootingSpeed;
+            int layerMask = LayerMask.GetMask("Default");
+            CreateBulletHole(_bulletHolePrefab, _shootingPosition.position, _shootingPosition.forward, 10f, layerMask);
         }
         _bulletCount--;
+        
         Destroy(bullet, 5f);
     }
 
@@ -95,5 +99,18 @@ public class Shooting : MonoBehaviour
     private void OnRelease(SelectExitEventArgs args)
     {
         _isHeld = false;
+    }
+
+    void CreateBulletHole(GameObject selectedBulletHole, Vector3 origin, Vector3 direction, float maxDistance, int layerMask)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(origin, direction, out hit, maxDistance, layerMask))
+        {
+            float rotationDegree = Random.Range(0,360);
+            GameObject hole = Instantiate(selectedBulletHole, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(hit.normal));
+            hole.transform.Rotate(hit.normal, rotationDegree, Space.World);
+            hole.transform.SetParent(hit.collider.transform);
+            Destroy(hole, 15f);
+        }
     }
 }

@@ -5204,6 +5204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca3e64a6c25ef44d85c66701378d23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletHolePrefab: {fileID: 4002133945025026791, guid: 6530352ca0770b34ab87fdea0d772c9d, type: 3}
   _shootingPosition: {fileID: 1028778020186498139}
   _bulletGameObject: {fileID: 7325583380587023384, guid: 00f58b921ffc0ef4b8df2318d151f8b9, type: 3}
   _shootingSpeed: 25
