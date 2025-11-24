@@ -4966,6 +4966,7 @@ GameObject:
   - component: {fileID: 33895446127476039}
   - component: {fileID: 2867626654588995064}
   - component: {fileID: 7600962521567253769}
+  - component: {fileID: 2976433258793740851}
   m_Layer: 0
   m_Name: Revolver
   m_TagString: Untagged
@@ -5204,7 +5205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca3e64a6c25ef44d85c66701378d23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletHolePrefab: {fileID: 4002133945025026791, guid: 6530352ca0770b34ab87fdea0d772c9d, type: 3}
   _shootingPosition: {fileID: 1028778020186498139}
   _bulletGameObject: {fileID: 7325583380587023384, guid: 00f58b921ffc0ef4b8df2318d151f8b9, type: 3}
   _shootingSpeed: 25
@@ -5309,6 +5309,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2976433258793740851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8018895278710369184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3d3e0efa46c544cbee72252082e3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletHole: {fileID: 4002133945025026791, guid: 6530352ca0770b34ab87fdea0d772c9d, type: 3}
+  _bloodParticle: {fileID: 8462735019426674382, guid: 082290018a18c2e489cd572ebba18a4e, type: 3}
 --- !u!1001 &5558330848002959957
 PrefabInstance:
   m_ObjectHideFlags: 0
