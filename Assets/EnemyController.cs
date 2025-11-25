@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     [Header("Refs")]
-    [SerializeField] Transform player; 
+    [SerializeField] GameObject player; 
 
     [Header("Tuning")]
     [SerializeField] float repathSeconds = 0.1f;
@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
     {
         if (!player) return;
 
-        float dist = Vector3.Distance(transform.position, player.position);
+        float dist = Vector3.Distance(transform.position, player.transform.position);
         float speed = agent.velocity.magnitude;
 
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
@@ -67,7 +67,7 @@ public class EnemyController : MonoBehaviour
         repathTimer += Time.deltaTime;
         if (!attackInProgress && repathTimer >= repathSeconds)
         {
-            agent.SetDestination(player.position);
+            agent.SetDestination(player.transform.position);
             repathTimer = 0f;
         }
 
@@ -81,13 +81,16 @@ public class EnemyController : MonoBehaviour
                 turnRateDegPerSec * Time.deltaTime
             );
         }
+        if (_enemyHealthManager.isDead())
+        {
+            Destroy(gameObject);
+        }
     }
     public void DealDamageToPlayer()
     {
         if (_targetHealthManager == null) return;
 
         _targetHealthManager.GetDamaged(attackDamage);
-        Debug.Log("Player hit for " + attackDamage);
     }
 
 
