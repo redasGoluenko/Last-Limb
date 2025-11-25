@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class TeleportOnPlayerCollision : MonoBehaviour
 {
+    public bool active = false;
+
     [Header("Name of the scene to load")]
     public string sceneToLoad;
 
@@ -11,7 +13,7 @@ public class TeleportOnPlayerCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Player") && !locked)
+        if (collision.collider.CompareTag("Player") && active)
         {
             SceneManager.LoadScene(sceneToLoad);
         }
@@ -19,7 +21,7 @@ public class TeleportOnPlayerCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && active)
         {
             SceneManager.LoadScene(sceneToLoad);
         }
