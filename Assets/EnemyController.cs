@@ -6,18 +6,20 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     [Header("Refs")]
-    [SerializeField] GameObject player;
+    [SerializeField] Transform player; 
 
     [Header("Tuning")]
-    [SerializeField] float repathSeconds = 0.1f;   
-    [SerializeField] float attackRange = 1.6f;    
-    [SerializeField] float attackDamage = 25f;
-    [SerializeField] string attackStateName = "Attack"; 
+    [SerializeField] float repathSeconds = 0.1f;
+    [SerializeField] float attackRange = 1.6f;
+    [SerializeField] float attackDamage = 25f;    
+    [SerializeField] float attackCooldown = 1.0f; 
+    [SerializeField] string attackStateName = "Attack";
     [SerializeField] float turnRateDegPerSec = 360f;
-    private HealthManager _targetHealthManager; // player
+
+    private HealthManager _targetHealthManager; 
     private HealthManager _enemyHealthManager;
 
-    // Animator parameters
+
     static readonly int SpeedHash = Animator.StringToHash("Speed");
     static readonly int DistanceHash = Animator.StringToHash("Distance");
     static readonly int AttackHash = Animator.StringToHash("Attack");
@@ -25,6 +27,7 @@ public class EnemyController : MonoBehaviour
     NavMeshAgent agent;
     Animator anim;
     float repathTimer;
+    float nextAttackTime; 
 
     void Awake()
     {
@@ -34,7 +37,6 @@ public class EnemyController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         agent.updateRotation = false;
-
         agent.isStopped = false;
     }
 
@@ -42,38 +44,42 @@ public class EnemyController : MonoBehaviour
     {
         if (!player) return;
 
-        float dist = Vector3.Distance(transform.position, player.transform.position);
+        float dist = Vector3.Distance(transform.position, player.position);
         float speed = agent.velocity.magnitude;
+
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        bool inAttackState = stateInfo.IsName(attackStateName);
+        bool attackInProgress = inAttackState && stateInfo.normalizedTime < 1f;
 
         anim.SetFloat(SpeedHash, speed);
         anim.SetFloat(DistanceHash, dist);
 
-        bool isAttacking = anim.GetCurrentAnimatorStateInfo(0).IsName(attackStateName);
+        agent.isStopped = attackInProgress;
 
-        if (!isAttacking && dist <= attackRange)
+
+        if (!attackInProgress && dist <= attackRange && Time.time >= nextAttackTime)
         {
             anim.ResetTrigger(AttackHash);
             anim.SetTrigger(AttackHash);
-            _targetHealthManager.GetDamaged(attackDamage);
+            nextAttackTime = Time.time + attackCooldown;
         }
 
-        agent.isStopped = isAttacking;
-
         repathTimer += Time.deltaTime;
-        if (!isAttacking && repathTimer >= repathSeconds)
+        if (!attackInProgress && repathTimer >= repathSeconds)
         {
-            agent.SetDestination(player.transform.position);
+            agent.SetDestination(player.position);
             repathTimer = 0f;
         }
 
         Vector3 desired = agent.desiredVelocity;
-        if (!isAttacking && desired.sqrMagnitude > 0.001f)
+        if (!attackInProgress && desired.sqrMagnitude > 0.001f)
         {
             Quaternion look = Quaternion.LookRotation(desired.normalized, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, look, turnRateDegPerSec * Time.deltaTime);
-        }
-        if(_enemyHealthManager.isDead()){
-            Destroy(gameObject);
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                look,
+                turnRateDegPerSec * Time.deltaTime
+            );
         }
     }
 
