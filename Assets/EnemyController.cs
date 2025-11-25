@@ -82,6 +82,15 @@ public class EnemyController : MonoBehaviour
             );
         }
     }
+    public void DealDamageToPlayer()
+    {
+        if (_targetHealthManager == null) return;
+
+        _targetHealthManager.GetDamaged(attackDamage);
+        Debug.Log("Player hit for " + attackDamage);
+    }
+
+
 
     void OnTriggerEnter(Collider other)
     {
