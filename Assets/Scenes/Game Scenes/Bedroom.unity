@@ -528,25 +528,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: d73c6d9d9a99af24492e5b9c362e8b07, type: 2}
   m_BuildHeightMesh: 0
---- !u!1 &502091242 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5704559627510206599, guid: e35b2595bdf4ad24b83afe45417724c3, type: 3}
-  m_PrefabInstance: {fileID: 542346692}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &502091247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502091242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 320b9460c19617c49a82ac3bb6fe56ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthPoints: 0
-  _maxHealth: 100
 --- !u!1 &515730595
 GameObject:
   m_ObjectHideFlags: 0
@@ -3084,8 +3065,6 @@ SceneRoots:
   - {fileID: 38433313}
   - {fileID: 1522190114}
   - {fileID: 1045022818}
-  - {fileID: 542346692}
-  - {fileID: 1665031715}
   - {fileID: 1318385292}
   - {fileID: 75385038}
   - {fileID: 1314394080}

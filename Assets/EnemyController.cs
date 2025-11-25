@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     [Header("Tuning")]
     [SerializeField] float repathSeconds = 0.1f;
     [SerializeField] float attackRange = 1.6f;
-    [SerializeField] float attackDamage = 25f;    
+    [SerializeField] float attackDamage = 10f;    
     [SerializeField] float attackCooldown = 1.0f; 
     [SerializeField] string attackStateName = "Attack";
     [SerializeField] float turnRateDegPerSec = 360f;
@@ -82,6 +82,15 @@ public class EnemyController : MonoBehaviour
             );
         }
     }
+    public void DealDamageToPlayer()
+    {
+        if (_targetHealthManager == null) return;
+
+        _targetHealthManager.GetDamaged(attackDamage);
+        Debug.Log("Player hit for " + attackDamage);
+    }
+
+
 
     void OnTriggerEnter(Collider other)
     {
