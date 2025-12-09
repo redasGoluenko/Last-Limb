@@ -581,12 +581,12 @@ MonoBehaviour:
   - {fileID: 1943866888}
   - {fileID: 1387198865}
   objectsToDeactivate:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1226496399}
+  - {fileID: 1226496398}
   - {fileID: 1943866888}
   - {fileID: 1387198865}
   - {fileID: 53211096}
-  teleporter: {fileID: 0}
+  teleporter: {fileID: 28081294}
 --- !u!4 &412118065
 Transform:
   m_ObjectHideFlags: 0
@@ -596,7 +596,7 @@ Transform:
   m_GameObject: {fileID: 412118061}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.156801, y: 0.5659799, z: -14.21}
+  m_LocalPosition: {x: -21.6568, y: 0.5659799, z: -14.304121}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -706,7 +706,7 @@ Transform:
   m_GameObject: {fileID: 626497395}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.480001, y: 0.98, z: -13.565879}
+  m_LocalPosition: {x: -21.98, y: 0.98, z: -13.66}
   m_LocalScale: {x: 2.4492319, y: 2.5877168, z: 0.5463535}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1661,7 +1661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.11788
+      value: -16.304
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1709,6 +1709,16 @@ PrefabInstance:
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 8396695576986066493, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
   m_PrefabInstance: {fileID: 1150907966}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1226496398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8605040193556079814, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
+  m_PrefabInstance: {fileID: 8606311150561899606}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1226496399 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8604975208023371010, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
+  m_PrefabInstance: {fileID: 8606311150561899606}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1318565565 stripped
 Transform:
@@ -2460,7 +2470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.1
+      value: -15.779
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3344,7 +3354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.65
+      value: -23.824
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.y
