@@ -868,7 +868,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 374289202576707483, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_Name
-      value: rust_key (3)
+      value: key2
       objectReference: {fileID: 0}
     - target: {fileID: 878877071059366523, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_Constraints
@@ -1215,7 +1215,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 374289202576707483, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_Name
-      value: rust_key (2)
+      value: key3
       objectReference: {fileID: 0}
     - target: {fileID: 878877071059366523, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_Constraints
@@ -1619,7 +1619,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 374289202576707483, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_Name
-      value: rust_key (1)
+      value: key1
       objectReference: {fileID: 0}
     - target: {fileID: 878877071059366523, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_Mass
