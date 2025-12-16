@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6030c998428b55141b59d39dec48ae63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   sceneToLoad: Dining Room
   locked: 0
 --- !u!114 &344850955

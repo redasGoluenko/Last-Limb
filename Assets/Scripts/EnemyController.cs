@@ -5,6 +5,12 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
 public class EnemyController : MonoBehaviour
 {
+    [Header("Footsteps")]
+    [SerializeField] AudioSource footstepSource;
+    [SerializeField] AudioClip[] footstepClips;
+    [SerializeField] float footstepVolume = 0.8f;
+
+
     [Header("Refs")]
     [SerializeField] Transform player;
 
@@ -18,6 +24,7 @@ public class EnemyController : MonoBehaviour
 
     private HealthManager _targetHealthManager;
     private HealthManager _enemyHealthManager;
+
 
     static readonly int SpeedHash = Animator.StringToHash("Speed");
     static readonly int DistanceHash = Animator.StringToHash("Distance");
@@ -57,7 +64,9 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
+
         float speed = agent.velocity.magnitude;
+
 
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
         bool inAttackState = stateInfo.IsName(attackStateName);
@@ -127,4 +136,12 @@ public class EnemyController : MonoBehaviour
             Destroy(bullet.gameObject);
         }
     }
+    public void PlayFootstep()
+    {
+        if (footstepClips == null || footstepClips.Length == 0) return;
+
+        int index = Random.Range(0, footstepClips.Length);
+        footstepSource.PlayOneShot(footstepClips[index], footstepVolume);
+    }
+
 }

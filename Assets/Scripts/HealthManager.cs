@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
+    public AudioSource damageAudio;
     public float _healthPoints ;
     public float _maxHealth = 100f;
 
@@ -20,6 +21,7 @@ public class HealthManager : MonoBehaviour
     {
         _healthPoints -= damagePoints;
         _healthPoints = Mathf.Clamp(_healthPoints, 0, _maxHealth);
+        damageAudio.Play();
     }
 
     /// <summary>
