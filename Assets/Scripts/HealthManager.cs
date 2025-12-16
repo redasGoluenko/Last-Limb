@@ -7,6 +7,8 @@ public class HealthManager : MonoBehaviour
     public float _healthPoints ;
     public float _maxHealth = 100f;
 
+    public AudioSource damageAudio;
+
     void Start()
     {
         _healthPoints = _maxHealth;
@@ -18,6 +20,7 @@ public class HealthManager : MonoBehaviour
     /// <param name="damagePoints">amount of points of health entity loses when getting damaged</param>
     public void GetDamaged(float damagePoints)
     {
+        damageAudio.Play();
         _healthPoints -= damagePoints;
         _healthPoints = Mathf.Clamp(_healthPoints, 0, _maxHealth);
     }

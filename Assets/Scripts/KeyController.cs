@@ -10,6 +10,10 @@ public class KeyController : MonoBehaviour
 
     public TeleportOnPlayerCollision teleporter; // Assign the teleporter in inspector
 
+    public AudioSource KeySound;
+
+    public AudioSource TeleportSound;
+
     void Start()
     {
         // Make all keys invisible initially
@@ -28,6 +32,8 @@ public class KeyController : MonoBehaviour
         // Check if the colliding object has the "Key" tag
         if (other.CompareTag("Key"))
         {
+            KeySound.Play();
+
             Destroy(other.gameObject); // Destroy the key that collided
 
             // Make the first invisible key visible
@@ -54,6 +60,7 @@ public class KeyController : MonoBehaviour
             // If all keys are visible, activate teleporter and toggle objects
             if (allVisible)
             {
+                TeleportSound.Play();
                 if (teleporter != null)
                     teleporter.active = true;
 
