@@ -6,19 +6,18 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     [Header("Refs")]
-    [SerializeField] Transform player; 
+    [SerializeField] Transform player;
 
     [Header("Tuning")]
     [SerializeField] float repathSeconds = 0.1f;
     [SerializeField] float attackRange = 1.6f;
-    [SerializeField] float attackDamage = 10f;    
-    [SerializeField] float attackCooldown = 1.0f; 
+    [SerializeField] float attackDamage = 10f;
+    [SerializeField] float attackCooldown = 1.0f;
     [SerializeField] string attackStateName = "Attack";
     [SerializeField] float turnRateDegPerSec = 360f;
 
-    private HealthManager _targetHealthManager; 
+    private HealthManager _targetHealthManager;
     private HealthManager _enemyHealthManager;
-
 
     static readonly int SpeedHash = Animator.StringToHash("Speed");
     static readonly int DistanceHash = Animator.StringToHash("Distance");
@@ -27,17 +26,21 @@ public class EnemyController : MonoBehaviour
     NavMeshAgent agent;
     Animator anim;
     float repathTimer;
-    float nextAttackTime; 
+    float nextAttackTime;
+    bool isAlerted;
 
     void Awake()
     {
-        _targetHealthManager = player.GetComponent<HealthManager>();
-        _enemyHealthManager = GetComponent<HealthManager>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        _enemyHealthManager = GetComponent<HealthManager>();
+
+        if (player != null)
+            _targetHealthManager = player.GetComponent<HealthManager>();
 
         agent.updateRotation = false;
         agent.isStopped = false;
+        isAlerted = false;
     }
 
     void Update()
@@ -45,6 +48,15 @@ public class EnemyController : MonoBehaviour
         if (!player) return;
 
         float dist = Vector3.Distance(transform.position, player.position);
+
+        if (!isAlerted)
+        {
+            anim.SetFloat(DistanceHash, dist);
+            anim.SetFloat(SpeedHash, 0f);
+            agent.isStopped = true;
+            return;
+        }
+
         float speed = agent.velocity.magnitude;
 
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
@@ -55,7 +67,6 @@ public class EnemyController : MonoBehaviour
         anim.SetFloat(DistanceHash, dist);
 
         agent.isStopped = attackInProgress;
-
 
         if (!attackInProgress && dist <= attackRange && Time.time >= nextAttackTime)
         {
@@ -82,6 +93,7 @@ public class EnemyController : MonoBehaviour
             );
         }
     }
+
     public void DealDamageToPlayer()
     {
         if (_targetHealthManager == null) return;
@@ -90,7 +102,12 @@ public class EnemyController : MonoBehaviour
         Debug.Log("Player hit for " + attackDamage);
     }
 
-
+    public void OnPlayerNoise()
+    {
+        isAlerted = true;
+        agent.isStopped = false;
+        Debug.Log("Enemy alerted by noise");
+    }
 
     void OnTriggerEnter(Collider other)
     {
