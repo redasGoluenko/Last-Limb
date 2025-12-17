@@ -1066,6 +1066,7 @@ GameObject:
   - component: {fileID: 5215627196661432835}
   - component: {fileID: 4796013717454660136}
   - component: {fileID: 6087409356369186821}
+  - component: {fileID: 2981306337160207984}
   m_Layer: 6
   m_Name: 'Player XR Origin (XR Rig) '
   m_TagString: Player
@@ -1224,7 +1225,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 35a3482bc09ebff4aabe050d0e450266, type: 3}
   m_Resource: {fileID: 8300000, guid: 35a3482bc09ebff4aabe050d0e450266, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1309,6 +1310,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2981306337160207984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494895491277482302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc78fba0fe8102438fdaca3bc807288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpeedForNoise: 1
+  maxSpeedForFullNoise: 2
+  maxNoiseRadius: 7.9
+  emitInterval: 0.3
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &6335190923890732807
 GameObject:
   m_ObjectHideFlags: 0

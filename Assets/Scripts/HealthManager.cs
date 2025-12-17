@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    public float _healthPoints ;
+    public float _healthPoints;
     public float _maxHealth = 100f;
 
-    public AudioSource damageAudio;
+    [SerializeField] private AudioSource damageAudio;
 
     void Start()
     {
@@ -15,32 +15,34 @@ public class HealthManager : MonoBehaviour
     }
 
     /// <summary>
-    ///  method to reduce health points to somekind of damage source
+    /// Method to reduce health points due to damage
     /// </summary>
-    /// <param name="damagePoints">amount of points of health entity loses when getting damaged</param>
     public void GetDamaged(float damagePoints)
     {
-        damageAudio.Play();
+        // Play sound only if an AudioSource is assigned
+        if (damageAudio != null)
+        {
+            damageAudio.Play();
+        }
+
         _healthPoints -= damagePoints;
         _healthPoints = Mathf.Clamp(_healthPoints, 0, _maxHealth);
     }
 
     /// <summary>
-    /// method to increase health points
+    /// Method to increase health points
     /// </summary>
-    /// <param name="healPoints">amount of points of health entity gains health</param>
     public void GetHealed(float healPoints)
     {
         _healthPoints += healPoints;
         _healthPoints = Mathf.Clamp(_healthPoints, 0, _maxHealth);
     }
+
     /// <summary>
     /// Checks if entity is dead
     /// </summary>
-    /// <returns>true if entity is dead</returns>
     public bool isDead()
     {
-        return _healthPoints <= 0;        
+        return _healthPoints <= 0;
     }
-
 }

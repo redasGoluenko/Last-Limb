@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 973605445917909252}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HandllerCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7030031220219384401}
   - component: {fileID: 2541421980515245996}
   - component: {fileID: 26199507997645306}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MuzzleFlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4930,7 +4930,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1028778020186498139}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ShootingPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4967,7 +4967,7 @@ GameObject:
   - component: {fileID: 2867626654588995064}
   - component: {fileID: 7600962521567253769}
   - component: {fileID: 2976433258793740851}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Revolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5224,7 +5224,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f9c4bba69198cee4db437808b6281033, type: 3}
   m_Resource: {fileID: 8300000, guid: f9c4bba69198cee4db437808b6281033, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -5371,9 +5371,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 1d62fb209f1e332468bcf6926f48f63e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1d62fb209f1e332468bcf6926f48f63e, type: 3}
       propertyPath: m_Name
       value: RevolverMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1d62fb209f1e332468bcf6926f48f63e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

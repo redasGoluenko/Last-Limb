@@ -1320,6 +1320,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6844348691793627720, guid: 4be1b5fc0d7c5c04793ccac03918b49f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7541096189409769563, guid: 4be1b5fc0d7c5c04793ccac03918b49f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.204712
@@ -1827,6 +1831,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1
       objectReference: {fileID: 0}
+    - target: {fileID: 6844348691793627720, guid: 4be1b5fc0d7c5c04793ccac03918b49f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7541096189409769563, guid: 4be1b5fc0d7c5c04793ccac03918b49f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22.24794
@@ -2291,6 +2299,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6844348691793627720, guid: 4be1b5fc0d7c5c04793ccac03918b49f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7541096189409769563, guid: 4be1b5fc0d7c5c04793ccac03918b49f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30.08648
@@ -2462,7 +2474,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cd609188728bc6f479ec45a34a941dc9, type: 3}
   m_Resource: {fileID: 8300000, guid: cd609188728bc6f479ec45a34a941dc9, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
